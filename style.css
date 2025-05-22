@@ -235,3 +235,35 @@ footer ul li a {
 .border-radius-10{
     border-radius: 10px;
 }
+
+.contact-page {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.contact-page label {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.contact-page input, .contact-page textarea {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    outline: none;
+    box-shadow: none;
+}
+
+.contact-page input:focus, .contact-page textarea:focus {
+    border-color: #34495e;
+}
+
+.contact-page button {
+    display: inline-block;
+    padding: 8px 30px;
+    width: auto;
+    border-radius: 4px;
+    background-color: #34495e !important;
+}
