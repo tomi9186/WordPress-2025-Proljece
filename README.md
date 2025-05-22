@@ -1,70 +1,108 @@
-[![Build Status](https://travis-ci.org/Automattic/_s.svg?branch=master)](https://travis-ci.org/Automattic/_s)
+# WordPress Tema Projekt
 
-_s
-===
+Ovaj projekt predstavlja prilagođenu WordPress temu razvijenu na temelju **Underscores** starter teme (_s) u kombinaciji s **Bootstrap** frameworkom. Tema je kreirana kao dio programa "Izrada i dizajn web sučelja u WordPressu".
 
-Hi. I'm a starter theme called `_s`, or `underscores`, if you like. I'm a theme meant for hacking so don't use me as a Parent Theme. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for.
+## Tehnologije
 
-My ultra-minimal CSS might make me look like theme tartare but that means less stuff to get in your way when you're designing your awesome theme. Here are some of the other more interesting things you'll find here:
+- **Underscores (_s)** - starter tema za WordPress
+- **Bootstrap** - CSS framework za responzivni dizajn
+- **WordPress** - sustav za upravljanje sadržajem
 
-* A modern workflow with a pre-made command-line interface to turn your project into a more pleasant experience.
-* A just right amount of lean, well-commented, modern, HTML5 templates.
-* A custom header implementation in `inc/custom-header.php`. Just add the code snippet found in the comments of `inc/custom-header.php` to your `header.php` template.
-* Custom template tags in `inc/template-tags.php` that keep your templates clean and neat and prevent code duplication.
-* Some small tweaks in `inc/template-functions.php` that can improve your theming experience.
-* A script at `js/navigation.js` that makes your menu a toggled dropdown on small screens (like your phone), ready for CSS artistry. It's enqueued in `functions.php`.
-* 2 sample layouts in `sass/layouts/` made using CSS Grid for a sidebar on either side of your content. Just uncomment the layout of your choice in `sass/style.scss`.
-Note: `.no-sidebar` styles are automatically loaded.
-* Smartly organized starter CSS in `style.css` that will help you to quickly get your design off the ground.
-* Full support for `WooCommerce plugin` integration with hooks in `inc/woocommerce.php`, styling override woocommerce.css with product gallery features (zoom, swipe, lightbox) enabled.
-* Licensed under GPLv2 or later. :) Use it to make something cool.
+## Struktura Projekta
 
-Installation
----------------
+Naša tema koristi modularnu arhitekturu Underscores teme koja dijeli kod u manje, neovisne dijelove radi lakšeg održavanja i ponovne upotrebe.
 
-### Requirements
+## Opis Glavnih Predložaka
 
-`_s` requires the following dependencies:
+### style.css
+Glavna CSS datoteka koja sadrži:
+- **Metadata teme** - naziv, autor, verzija i opis teme
+- **Bootstrap integracija** - prilagodbe Bootstrap komponenti
+- **Prilagođeni stilovi** - naši CSS stilovi koji proširuju osnovnu Underscores funkcionalnost
+- **Responzivni dizajn** - stilovi za različite veličine ekrana
 
-- [Node.js](https://nodejs.org/)
-- [Composer](https://getcomposer.org/)
+/*
+Theme Name: Naša WordPress Tema
+Author: Ime Studenta
+Version: 1.0
+Description: Prilagođena tema bazirana na Underscores s Bootstrap frameworkom
+*/
 
-### Quick Start
 
-Clone or download this repository, change its name to something else (like, say, `megatherium-is-awesome`), and then you'll need to do a six-step find and replace on the name in all the templates.
+### page.php
+Predložak za prikaz statičkih stranica:
+- **Container wrapper** - dodali smo Bootstrap container klase za bolje poravnavanje sadržaja
+- **Poziva template-parts/content-page.php** za prikaz sadržaja stranice
+- **Integracija komentara** - ako su omogućeni na stranici
 
-1. Search for `'_s'` (inside single quotations) to capture the text domain and replace with: `'megatherium-is-awesome'`.
-2. Search for `_s_` to capture all the functions names and replace with: `megatherium_is_awesome_`.
-3. Search for `Text Domain: _s` in `style.css` and replace with: `Text Domain: megatherium-is-awesome`.
-4. Search for <code>&nbsp;_s</code> (with a space before it) to capture DocBlocks and replace with: <code>&nbsp;Megatherium_is_Awesome</code>.
-5. Search for `_s-` to capture prefixed handles and replace with: `megatherium-is-awesome-`.
-6. Search for `_S_` (in uppercase) to capture constants and replace with: `MEGATHERIUM_IS_AWESOME_`.
+### single.php
+Predložak za prikaz pojedinačnih objava:
+- **Container wrapper** - Bootstrap container za konzistentno poravnavanje
+- **Poziva template-parts/content.php** za prikaz sadržaja objave
+- **Navigacija između objava** - linkovi na prethodnu/sljedeću objavu
+- **Komentari** - sekcija za komentare ako su aktivni
 
-Then, update the stylesheet header in `style.css`, the links in `footer.php` with your own information and rename `_s.pot` from `languages` folder to use the theme's slug. Next, update or delete this readme.
+### template-parts/content.php
+Template dio za prikaz sadržaja objava:
+- **Naslov objave** s linkovima
+- **Meta informacije** - datum, autor, kategorije
+- **Sadržaj objave** - excerpt ili puni sadržaj ovisno o kontekstu
+- **Tagovi** - prikaz povezanih tagova
+- **Modularnost** - može se koristiti u različitim predlošcima
 
-### Setup
+### template-parts/content-page.php
+Template dio specifičan za stranice:
+- **Naslov stranice** - bez linka (za razliku od objava)
+- **Sadržaj stranice** - puni sadržaj stranice
+- **Jednostavniji layout** - bez meta informacija kao što su datum ili kategorije
+- **Fokus na sadržaj** - minimalistički pristup za bolje korisničko iskustvo
 
-To start using all the tools that come with `_s`  you need to install the necessary Node.js and Composer dependencies :
+### archive.php
+Predložak za prikaz arhivskih stranica (kategorije, tagovi, datumi):
+- **Naslov arhive** - dinamički naslov ovisno o vrsti arhive
+- **Lista objava** - koristi template-parts/content.php za svaku objavu
+- **Paginacija** - navigacija kroz stranice arhive
+- **Breadcrumbs** - navigacijski putokaz za bolje korisničko iskustvo
 
-```sh
-$ composer install
-$ npm install
-```
+## Ključne Značajke
 
-### Available CLI commands
+### Responzivni Dizajn
+Kombinacija Underscores mobilne navigacije i Bootstrap grid sustava osigurava optimalan prikaz na svim uređajima.
 
-`_s` comes packed with CLI commands tailored for WordPress theme development :
+### Modularnost
+Template parts omogućavaju lakše održavanje koda jer se promjene rade na jednom mjestu.
 
-- `composer lint:wpcs` : checks all PHP files against [PHP Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/).
-- `composer lint:php` : checks all PHP files for syntax errors.
-- `composer make-pot` : generates a .pot file in the `languages/` directory.
-- `npm run compile:css` : compiles SASS files to css.
-- `npm run compile:rtl` : generates an RTL stylesheet.
-- `npm run watch` : watches all SASS files and recompiles them to css when they change.
-- `npm run lint:scss` : checks all SASS files against [CSS Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/css/).
-- `npm run lint:js` : checks all JavaScript files against [JavaScript Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/javascript/).
-- `npm run bundle` : generates a .zip archive for distribution, excluding development and system files.
+### Bootstrap Integracija
+Framework omogućava brže razvijanje s gotovim komponentama i grid sustavom.
 
-Now you're ready to go! The next step is easy to say, but harder to do: make an awesome WordPress theme. :)
+### SEO Optimizacija
+Underscores dolazi s dobrom osnovom za SEO s pravilno strukturiranim HTML5 elementima.
 
-Good luck!
+## Instalacija i Korištenje
+
+1. Preuzmite temu s [underscores.me](https://underscores.me/)
+2. Dodajte Bootstrap CSS i JS datoteke
+3. Prilagodite `style.css` s vašim dizajnom
+4. Modificirajte template datoteke prema potrebama
+5. Testirajte responzivnost na različitim uređajima
+
+## Napomene za Razvoj
+
+- **Ne koristite kao Parent Theme** - Underscores je namijenjen za direktno modificiranje
+- **Koristite template parts** - za bolju organizaciju koda
+- **Testirajte na različitim uređajima** - osigurajte responzivnost
+- **Dokumentirajte promjene** - za lakše održavanje
+
+## Struktura Datoteka
+
+tema-folder/
+├── style.css
+├── page.php
+├── single.php
+├── archive.php
+├── template-parts/
+│ ├── content.php
+│ └── content-page.php
+└── ... (ostale Underscores datoteke)
+
+Ova tema predstavlja solidnu osnovu za daljnji razvoj WordPress stranica s modernim pristupom dizajnu i funkcionalnosti.
